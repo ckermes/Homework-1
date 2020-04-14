@@ -16,6 +16,8 @@ pollutantmean <- function(directory, pollutant, id = 1:332){
   
 }
 pollutantmean(AggData, sulphate, id = 1:332)  
+
+
 library(data.table)
 files <- list.files(pattern = ".csv")
 temp <- lapply(files, read.csv, sep = ",")
