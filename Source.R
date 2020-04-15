@@ -1,46 +1,38 @@
-for (k in 1:length(listcsv)){
-  
-  AggData[[k]] <- read.csv(listcsv[k])
-  
-}
-
-ldf <- list() # creates a list
-listcsv <- dir(pattern = "*.csv") # creates the list of all the csv files in the directory
-for (k in 1:length(listcsv)){
-  ldf[[k]] <- read.csv(listcsv[k])
-}
-str(ldf[[1]])
-
-
-pollutantmean <- function(directory, pollutant, id = 1:332){
-  
-}
-pollutantmean(AggData, sulphate, id = 1:332)  
-
-
+#reads data into the environment
 library(data.table)
-files <- list.files(pattern = ".csv")
-temp <- lapply(files, read.csv, sep = ",")
-data <- rbind( temp )
+files <- list.files('specdata',pattern = ".csv", full.names = TRUE) #creates a list of full names and where data is sourcing from
+temp <- lapply(files, read.csv, sep = ",")  #creates a holder with all of the individual .csv files
+data <- rbind( temp ) #rbinds all the .csv files together into one file
 
 meanfunc <- function()
   
+
+    dat_subset <- data[which(data[pollutant,] == pollutant)]
+
+
+pollutantmean <- function(directory, pollutant, id = 1:332){
+  #creates a list of full names and where data is sourcing from
+   files <- list.files('specdata',pattern = ".csv", full.names = TRUE) 
+   #creates a holder with all of the individual .csv files
+    temp <- lapply(files, read.csv, sep = ",") 
+    unlist(temp)
+    #rbinds all the .csv files together into one file
+    data <- rbind( temp )
+    #subsets data into the right variable
+    for(i in id){
+      data1<-data[,pollutant]
+      
+      data2<-data1[!is.na(data1)]
+    }
   
-  pollutantmean <- function(directory, pollutant, id = 1:332){
-    #gets rid of na values
-    pol <- is.na(pollutant)   
-    clean <- na.omit(pollutant)
     
-    #finds the mean
-    temp <- sum(clean)/length(clean) 
-    
-    #prints the mean
-    temp 
+    #creates median with no na values
+    median(data2$pollutant)
     
   }
 
 
-
+pollutantmean(data, sulphate, id)
 
 
 
