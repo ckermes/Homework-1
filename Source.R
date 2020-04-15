@@ -2,7 +2,7 @@
 
 pollutantmean <- function(directory, pollutant = "sulfate", id = 1:332){
   #creates a list of full names and where data is sourcing from
-   dirlist <- list.files('specdata',pattern = ".csv", full.names = TRUE) 
+   dirlist <- list.files(path = directory ,pattern = ".csv", full.names = TRUE) 
    #creates a holder with all of the individual .csv files
     filenames <- dirlist[id]
     #unlist(temp)
@@ -25,9 +25,5 @@ pollutantmean <- function(directory, pollutant = "sulfate", id = 1:332){
   }
 
 
-pollutantmean(specdata)
-
-
-
-
+pollutantmean('specdata')
 

@@ -6,11 +6,12 @@ complete <- function(directory, id = 1:332){
   ##id is an integer vector indicating the monitor ID 
   ##numbers to be used
   
-  #calls in the data frome from mean function
-  dirFiles <- list.files('specdata', full.names = TRUE, pattern = "*.csv")
+  
+  dirFiles <- list.files(path = directory, full.names = TRUE, pattern = "*.csv")
   
   #keep only the files that are selected in the id parameter
-  filesNames <- dirFiles[id]
+  fileNames <- list()
+  fileNames <- dirFiles[id]
   
   #Read each CSV file 
   obsDataFrame <- data.frame()
@@ -32,4 +33,8 @@ complete <- function(directory, id = 1:332){
   
 }
 
-complete(specdata)
+complete("specdata")
+
+
+
+
